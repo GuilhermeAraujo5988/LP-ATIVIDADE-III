@@ -1,63 +1,58 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <locale.h>
 
 int main()
 {
+
     setlocale(LC_ALL, "portuguese");
-    int op;
-    char produto[200];
-    float valor;
-    int quantidade;
-    float valorFinal[200];
-    int i;
+
+    char nomeProduto[99][200];
+    float preco[99];
+    int quantidade[99];
+    int i = 0;
+    int j = 0;
+    int resp = 0;
+    float totalVendas = 0;
+    float venda = 0;
+
     do
     {
-        printf("\n----------Menu---------- \n");
-        printf("1 - Adicionar uma venda\n");
-        printf("2 - Sair do menu e exibir e ressultado\n");
-        printf("Digite o número de acordo com sua opção: \n");
-        scanf("%d", &op);
+        printf("1. Para continuar cadastrando\n");
+        printf("2. Para encerrar e mostrar os nÃºmeros\n");
+        scanf("%d", &resp);
+        puts("");
 
-        switch (op)
+        if (resp == 1)
+
         {
-        case 1:
-            printf("Digite a quantidade de produtos que deseja comprar: \n");
-            scanf("%d", &quantidade);
+            printf("Digite o nome do produto: ");
+            scanf("%s", &nomeProduto[i]);
 
-            for (i = 0; i < quantidade; i++)
-            {
-                fflush(stdin); 
+            printf("Digite o valor do produto: ");
+            scanf("%f", &preco[i]);
 
-                printf("Digite o nome do produto q você vai comprar: \n");
-                gets(produto);
-
-                fflush(stdin);
-
-                printf("Digite o valor do produto: \n");
-                scanf("%f", &valor);
-
-                fflush(stdin);
-                valorFinal[i] = valor * (float)quantidade;
-            }
-
-            printf("Nome do produto: %s \n", produto);
-            printf("Valor da compra: %.1f \n", valor);
-            printf("Quantidades de produtos: %d \n", quantidade);
-            printf("Valor tatal: %.1f \n", valorFinal);
-
-            break;
-
-        case 2:
-            printf("Nome do produto: %s \n", produto);
-            printf("Valor da compra: R$%.1f \n", valor);
-            printf("Quantidades de produtos: %d \n", quantidade);
-            printf("Valor tatal: R$%.1f \n", valorFinal);
-            break;
-        default:
-            printf("Opção inválida");
+            printf("Digite a quantidade do produto: ");
+            scanf("%d", &quantidade[i]);
+            totalVendas = totalVendas + preco[i];
+            venda = totalVendas * quantidade[i];
+            i = i + 1;
+            j++;
         }
-    } while (op != 2);
+
+    } while (resp == 1);
+
+    printf("\n\nExibindo dados..........\n\n");
+
+    for (i = 0; i < j; i++)
+    {
+        printf("Nome do produto: %s \n", nomeProduto[i]);
+        printf("Quantidade do produto: %d \n", quantidade[i]);
+        printf("Valor: R$ %f \n\n", preco[i]);
+    }
+
+    printf("Total de vendas foi de R$ %.1f\n", venda);
 
     return 0;
 }
