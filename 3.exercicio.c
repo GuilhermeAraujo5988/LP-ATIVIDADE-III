@@ -4,50 +4,48 @@
 
 int main()
 {
+
     setlocale(LC_ALL, "portuguese");
-    int numero[5];
-    int i = 0;
-    int op;
-    int quantidade = 0;
-    char nome[5][200];
+
+    char numeros[99][100];
+    int codigo;
+    int i;
+    int j = 0;
+    char nomes[99][200];
+
+    printf("Menu");
+    printf("\n\n1 -Cadastrar novo contato na lista telefonica \n");
+    printf("2 - Mostrar os nÃºmeros cadastrados: ");
+    scanf("%d", &codigo);
+    system("cls || clear");
 
     do
     {
-        printf("1- Adicionar um número \n");
-        printf("2- Mostrar números cadastrados \n\n");
-        printf("Digite o código de preferência: ");
-        scanf("%d", &op);
 
-        switch (op)
-        {
-        case 1:
+        fflush(stdin);
 
-            fflush(stdin);
-            printf("Digite seu nome: ");
-            gets(nome);
+        printf("Nome: ");
+        gets(nomes[j]);
 
-            fflush(stdin);
+        printf("NÃºmero: ");
+        gets(numeros[j]);
 
-            printf("Digite o número telefônico: \n");
-            scanf("%d", &numero);
+        printf("\n\n1 -Cadastrar novo contato na lista telefonica \n");
+        printf("2 - Mostrar os nÃºmeros cadastrados: ");
 
-            fflush(stdin);
+        printf("\nDigite a opÃ§Ã£o desejada: ");
+        scanf("%d", &codigo);
+        system("cls || clear");
+        j++;
 
-            quantidade++;
-            break;
-        case 2:
-            for (i = 0; i < quantidade; i++)
-            {
-                printf("Nome: %s \n", nome[i]);
-                printf("Número cadastrado: %d \n\n", numero[i]);
-            }
+    } while (codigo != 2);
 
-            break;
+    printf("NÃšMEROS CADASTRADOS:\n\n");
+    for (i = 0; i < j; i++)
+    {
+        printf("Nome: %s\n", nomes[i]);
+        printf("NÃºmero: %s\n\n", numeros[i]);
+    }
 
-        default:
-            printf("Número inválido");
-            break;
-        }
-    } while (op != 2);
     return 0;
 }
